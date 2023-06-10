@@ -1,22 +1,14 @@
 import * as React from "react";
-import { Text, View, FlatList, Image, StyleSheet } from "react-native";
+import { Text, View } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import MenuPage from "./menu";
 
 function RewardsPage() {
   return (
     <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
       <Text>Rewards!</Text>
     </View>
-  );
-}
-
-function MenuPage() {
-  return (
-    <View>
-      <Text>Galley Grub</Text>
-    </View>
-
   );
 }
 
@@ -36,12 +28,11 @@ function ProfilePage() {
   );
 }
 
-
 function NavigationBar() {
   const Tab = createBottomTabNavigator();
   return (
     <Tab.Navigator
-      initialRouteName="Menu"
+      initialRouteName="GALLEY GRUB"
       screenOptions={{
         tabBarActiveTintColor: "#41b6e6",
       }}
@@ -57,10 +48,10 @@ function NavigationBar() {
         }}
       />
       <Tab.Screen
-        name="Menu"
+        name="GALLEY GRUB"
         component={MenuPage}
         options={{
-          tabBarLabel: "Menu",
+          tabBarLabel: "GALLEY GRUB",
           tabBarIcon: ({ color, size }) => (
             <MaterialCommunityIcons name="food" color={color} size={size} />
           ),
@@ -72,7 +63,11 @@ function NavigationBar() {
         options={{
           tabBarLabel: "Order",
           tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons name="cart" color={color} size={size} />
+            <MaterialCommunityIcons
+              name="room-service"
+              color={color}
+              size={size}
+            />
           ),
         }}
       />
@@ -82,7 +77,7 @@ function NavigationBar() {
         options={{
           tabBarLabel: "Account",
           tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons name="account" color={color} size={size} />
+            <MaterialCommunityIcons name="fish" color={color} size={size} />
           ),
         }}
       />
