@@ -1,16 +1,9 @@
 import * as React from "react";
-import { Text, View } from "react-native";
+import { Text, View, ScrollView, Button, TextInput } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import MenuPage from "./menu";
-
-function RewardsPage() {
-  return (
-    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-      <Text>Rewards!</Text>
-    </View>
-  );
-}
+import ProfilePage from "./account";
 
 function OrderPage() {
   return (
@@ -20,33 +13,16 @@ function OrderPage() {
   );
 }
 
-function ProfilePage() {
-  return (
-    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-      <Text>Profile</Text>
-    </View>
-  );
-}
-
 function NavigationBar() {
   const Tab = createBottomTabNavigator();
   return (
     <Tab.Navigator
-      initialRouteName="GALLEY GRUB"
+      initialRouteName="Account"
       screenOptions={{
         tabBarActiveTintColor: "#41b6e6",
+        headerShown: false
       }}
     >
-      <Tab.Screen
-        name="Rewards"
-        component={RewardsPage}
-        options={{
-          tabBarLabel: "Rewards",
-          tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons name="qrcode" color={color} size={size} />
-          ),
-        }}
-      />
       <Tab.Screen
         name="GALLEY GRUB"
         component={MenuPage}
@@ -61,21 +37,17 @@ function NavigationBar() {
         name="Order"
         component={OrderPage}
         options={{
-          tabBarLabel: "Order",
+          tabBarLabel: "ORDER",
           tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons
-              name="room-service"
-              color={color}
-              size={size}
-            />
+            <MaterialCommunityIcons name="receipt" color={color} size={size} />
           ),
         }}
       />
       <Tab.Screen
-        name="Profile"
+        name="Account"
         component={ProfilePage}
         options={{
-          tabBarLabel: "Account",
+          tabBarLabel: "ACCOUNT",
           tabBarIcon: ({ color, size }) => (
             <MaterialCommunityIcons name="fish" color={color} size={size} />
           ),
