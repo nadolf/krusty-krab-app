@@ -1,16 +1,36 @@
 import React, { Component } from "react";
-import { View, ScrollView, SafeAreaView, Text, Image } from "react-native";
+import {
+  View,
+  ScrollView,
+  SafeAreaView,
+  Text,
+  Image,
+  TouchableOpacity,
+  Dimensions,
+  FlatList,
+  
+} from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import { Card } from "react-native-paper";
+import { Card, Searchbar } from "react-native-paper";
 
-//const [visible, setVisible] = React.useState(false);
-//const onToggleSnackBar = () => setVisible(!visible);
 let itemList = [];
 
 class Item extends Component {
+  state = {
+    count: 0,
+  };
+
+  onPress = () => {
+    this.setState({
+      count: this.state.count + 1,
+    });
+  };
+  //line 34: <Text>Total:{this.state.count}</Text>
   render() {
     return (
-      <View>
+      <View >
+        <TouchableOpacity onPress={this.onPress}></TouchableOpacity>
+        <View></View>
         <Card.Title
           style={{
             backgroundColor: "white",
@@ -29,17 +49,42 @@ class Item extends Component {
               size={25}
               style={{ marginRight: 40 }}
               onPress={() => {
-                itemList.push(this.props.statement);
+                itemList.push(this.props.id);
                 console.log(itemList);
+                this.setState({
+                  count: this.state.count + this.props.price,
+                });
               }}
             />
-            //<Button onPress={onToggleSnackBar}>{visible ? "+" : "-"}</Button>
           )}
         />
       </View>
     );
   }
 }
+
+class MenuTab extends Component {
+  render() {
+    return (
+      <View>
+      </View>
+    );
+  }
+}
+
+const Search = () => {
+  const [searchQuery, setSearchQuery] = React.useState("");
+  const onChangeSearch = (query) => setSearchQuery(query);
+  return (
+    <View>
+      <Searchbar
+        placeholder="Search"
+        onChangeText={onChangeSearch}
+        value={searchQuery}
+      />
+    </View>
+  );
+};
 
 export default class MenuPage extends Component {
   render() {
@@ -59,18 +104,19 @@ export default class MenuPage extends Component {
             />
             <Text>GALLEY GRUB</Text>
           </View>
-          <Item name="KRABBY PATTY" price="1.25" statement="button 1" />
-          <Item name="DOUBLE KRABBY PATTY" price="2.00" statement="button 2" />
-          <Item name="TRIPLE KRABBY PATTY" price="2.00" statement="button 2" />
-          <Item name="CORAL BITS" price="1.25" statement="button 4" />
-          <Item name="KELP RINGS" price="1.50" statement="button 5" />
-          <Item name="KRABBY MEAL" price="3.50" statement="button 6" />
-          <Item name="DOUBLE KRABBY MEAL" price="3.75" statement="button 7" />
-          <Item name="TRIPLE KRABBY MEAL" price="4.00" statement="button 8" />
-          <Item name="SALTY SEA DOG" price="1.25" statement="button 9" />
-          <Item name="SAILORS SURPRISE" price="3.00" statement="button 10" />
-          <Item name="KELP SHAKE" price="2.00" statement="button 11" />
-          <Item name="SEAFOAM SODA" price="1.00" statement="button 12" />
+          <Search />
+          <Item name="KRABBY PATTY" price={1.25} id="1" />
+          <Item name="DOUBLE KRABBY PATTY" price={2.0} id="2" />
+          <Item name="TRIPLE KRABBY PATTY" price={3.0} id=" 3" />
+          <Item name="CORAL BITS" price={1.25} id="4" />
+          <Item name="KELP RINGS" price={1.5} id="5" />
+          <Item name="KRABBY MEAL" price={3.5} id="6" />
+          <Item name="DOUBLE KRABBY MEAL" price={3.75} id="7" />
+          <Item name="TRIPLE KRABBY MEAL" price={4.0} id="8" />
+          <Item name="SALTY SEA DOG" price={1.25} id="9" />
+          <Item name="SAILORS SURPRISE" price={3.0} id="10" />
+          <Item name="KELP SHAKE" price={2.0} id="11" />
+          <Item name="SEAFOAM SODA" price={1.0} id="12" />
         </ScrollView>
       </SafeAreaView>
     );

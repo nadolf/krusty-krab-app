@@ -8,10 +8,10 @@ import {
   SafeAreaView,
   Image,
   TouchableOpacity,
-  useState
+  useState,
 } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import { ProgressBar, List } from "react-native-paper";
+import { ProgressBar, List, Searchbar } from "react-native-paper";
 
 function ProfilePage() {
   let userName = "Name";
@@ -26,7 +26,7 @@ function ProfilePage() {
   const [count, setCount] = React.useState(0);
   const [color, setColor] = React.useState("blue");
 
-  let x = 0.6;
+  let x = 0.0;
 
   return (
     <SafeAreaView>
@@ -54,12 +54,36 @@ function ProfilePage() {
             />
           </View>
           <Button
-             color="#41b6e6" onPress={() => {setCount(count + 0.1), setColor("#41b6e6")}} title="Point"
-           />
-           <Button
-             color="#41b6e6" onPress={() => { if(count > 0.9) {setCount(0), setColor("gold")} else if (count < 0.9) {setCount(count)}}} title="Reedem"
-           />
+            color="#41b6e6"
+            onPress={() => {
+              setCount(count + 0.1), setColor("#41b6e6");
+            }}
+            title="Point"
+          />
+          <Button
+            color="#41b6e6"
+            onPress={() => {
+              if (count > 0.9) {
+                setCount(0), setColor("gold");
+              } else if (count < 0.9) {
+                setCount(count);
+              }
+            }}
+            title="Reedem"
+          />
         </View>
+        <List.Accordion
+          theme={{
+            colors: {
+              primary: "#41b6e6",
+            },
+          }}
+          title="Previous Orders"
+          left={(props) => <List.Icon {...props} icon="cart" />}
+        >
+          <List.Item title="First Order" />
+          <List.Item title="Second Order " />
+        </List.Accordion>
         <List.Accordion
           theme={{
             colors: {

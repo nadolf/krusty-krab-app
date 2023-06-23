@@ -1,30 +1,22 @@
 import * as React from "react";
-import { Text, View, ScrollView, Button, TextInput } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import MenuPage from "./menu";
 import ProfilePage from "./account";
-
-function OrderPage() {
-  return (
-    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-      <Text>Order!</Text>
-    </View>
-  );
-}
+import OrderPage from "./order";
 
 function NavigationBar() {
   const Tab = createBottomTabNavigator();
   return (
     <Tab.Navigator
-      initialRouteName="Account"
+      initialRouteName="Galley Grub"
       screenOptions={{
         tabBarActiveTintColor: "#41b6e6",
-        headerShown: false
+        headerShown: false,
       }}
     >
       <Tab.Screen
-        name="GALLEY GRUB"
+        name="Galley Grub"
         component={MenuPage}
         options={{
           tabBarLabel: "GALLEY GRUB",
