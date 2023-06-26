@@ -40,7 +40,7 @@ function ProfilePage() {
         >
           <Image
             source={require("../assets/images/Logo.png")}
-            style={{ width: 70, height: 70 }}
+            style={{ width: 80, height: 80 }}
           />
           <Text style={{ fontSize: 30, margin: 30 }}>Hi, {userName}!</Text>
           <Text style={{ fontSize: 20, margin: 10 }}>Good Noodle Rewards</Text>
@@ -53,13 +53,13 @@ function ProfilePage() {
               style={{ marginTop: -15 }}
             />
           </View>
-          <Button
+          {/*<Button
             color="#41b6e6"
             onPress={() => {
               setCount(count + 0.1), setColor("#41b6e6");
             }}
             title="Point"
-          />
+          />*/}
           <Button
             color="#41b6e6"
             onPress={() => {

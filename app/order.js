@@ -29,7 +29,7 @@ function OrderPage() {
           >
             <Image
               source={require("../assets/images/Logo.png")}
-              style={{ width: 70, height: 70 }}
+              style={{ width: 80, height: 80 }}
             />
             <Text>ORDER</Text>
           </View>
@@ -39,25 +39,25 @@ function OrderPage() {
               {
                 id: "1",
                 name: "KRABBY PATTY",
-                price: "1.25",
+                price: 1.25,
                 image: require("../assets/images/KrabbyPatty.png"),
               },
               {
                 id: "2",
                 name: "DOUBLE KRABBY PATTY",
-                price: "2.00",
+                price: 2.00,
                 image: require("../assets/images/Deluxe_Krabby_Patty.png"),
               },
               {
                 id: "3",
                 name: "TRIPLE KRABBY PATTY",
-                price: "3.00",
+                price: 3.00,
                 image: require("../assets/images/Logo.png"),
               },
               {
                 id: "4",
                 name: "CORAL BITS",
-                price: "1.25",
+                price: 1.25,
                 image: require("../assets/images/Coral_Bits.png"),
               },
             ]}
