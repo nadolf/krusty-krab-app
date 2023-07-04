@@ -9,11 +9,13 @@ import {
   StyleSheet,
   Dimensions,
   FlatList,
+  Modal,
 } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { Searchbar } from "react-native-paper";
 
 let itemList = [];
+var modalItem = "";
 
 const Search = () => {
   const [searchQuery, setSearchQuery] = React.useState("");
@@ -68,31 +70,31 @@ const data = [
   },
   {
     name: "Double Krabby Patty",
-    price: 2.00,
+    price: 2.0,
     category: "Patties",
     image: require("../assets/images/Deluxe_Krabby_Patty.png"),
   },
   {
     name: "Triple Krabby Patty",
-    price: 3.00,
+    price: 3.0,
     category: "Patties",
     image: require("../assets/images/Logo.png"),
   },
   {
     name: "Coral Bits",
-    price: 1.00,
+    price: 1.0,
     category: "Sides",
     image: require("../assets/images/Coral_Bits.png"),
   },
   {
     name: "Kelp Rings",
-    price: 1.50,
+    price: 1.5,
     category: "Sides",
     image: require("../assets/images/KrabbyPatty.png"),
   },
   {
     name: "Krabby Meal",
-    price: 3.50,
+    price: 3.5,
     category: "Meals",
     image: require("../assets/images/KrabbyPatty.png"),
   },
@@ -104,7 +106,7 @@ const data = [
   },
   {
     name: "Triple Krabby Meal",
-    price: 4.00,
+    price: 4.0,
     category: "Meals",
     image: require("../assets/images/KrabbyPatty.png"),
   },
@@ -116,19 +118,19 @@ const data = [
   },
   {
     name: "Sailors Surprise",
-    price: 3.00,
+    price: 3.0,
     category: "Meals",
     image: require("../assets/images/KrabbyPatty.png"),
   },
   {
     name: "Kelp Shake",
-    price: 2.00,
+    price: 2.0,
     category: "Drinks",
     image: require("../assets/images/KrabbyPatty.png"),
   },
   {
     name: "Seafoam Soda",
-    price: 1.00,
+    price: 1.0,
     category: "Drinks",
     image: require("../assets/images/KrabbyPatty.png"),
   },
@@ -159,26 +161,47 @@ const MenuPage = () => {
         <View style={styles.itemBody}>
           <Text style={styles.itemName}>{item.name}</Text>
           <Text>${item.price}</Text>
+          
         </View>
-        <View
-          style={[
-            styles.itemStatus,
-            { backgroundColor: item.category === "Purple" ? "Pink" : "Green" },
-          ]}
+        <MaterialCommunityIcons
+          name="plus"
+          size={25}
+          style={{ alignSelf:'center', marginRight:40}}
+          onPress={() => {
+            itemList.push(item.name);
+            modalItem= item.name;
+            console.log(itemList);
+            setModalVisible(true)
+          }}
+        />
+        <Modal
+          animationType="slide"
+          transparent={true}
+          visible={modalVisible}
+          onRequestClose={() => {
+            setModalVisible(!modalVisible);
+          }}
         >
-          <MaterialCommunityIcons
-            name="plus"
-            size={25}
-            style={{ marginRight: 40 }}
-            onPress={() => {
-              itemList.push(item.name);
-              console.log(itemList);
-            }}
-          />
-        </View>
+          <View style={styles.centeredView}>
+            <View style={styles.modalView}>
+            <MaterialCommunityIcons
+                    name="close"
+                    size={25}
+                    style={{verticalAlign:'top', alignSelf: 'flex-end', position: 'absolute', paddingRight:20, paddingTop:20, color: 'white'}}
+                    onPress={() => {
+                      setModalVisible(!modalVisible)
+                    }}
+                  />            
+              <Text style={styles.modalText}>
+                {modalItem} added to order
+              </Text>
+            </View>
+          </View>
+        </Modal>
       </View>
     );
   };
+  const [modalVisible, setModalVisible] = useState(false);
 
   return (
     <SafeAreaView style={styles.container}>
@@ -285,5 +308,24 @@ const styles = StyleSheet.create({
   },
   itemStatus: {
     justifyContent: "center",
+  },
+  centeredView: {
+    flex: 1,
+    justifyContent: "flex-end",
+    marginBottom: "20.2%"
+  },
+  modalView: {
+    backgroundColor: "#06a94d",
+    padding: 20,
+    alignItems: "center",
+  },
+  modalText: {
+    textAlign: 'center',
+    fontSize: 16,
+    color: 'white'
+  },
+  button: {
+    borderRadius: 20,
+    elevation: 2,
   },
 });

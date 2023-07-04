@@ -7,8 +7,6 @@ import {
   Image,
   FlatList,
   TouchableOpacity,
-  TextInput,
-  Button,
   StyleSheet,
   Modal,
   LayoutAnimation,
