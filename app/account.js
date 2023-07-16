@@ -8,25 +8,21 @@ import {
   SafeAreaView,
   Image,
   TouchableOpacity,
-  useState,
 } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import { ProgressBar, List, Searchbar } from "react-native-paper";
+import { ProgressBar, List } from "react-native-paper";
 
 function ProfilePage() {
-  let userName = "Name";
-  const [name, newName] = React.useState("");
+  const [name, newName] = React.useState("There");
   const [phone, newPhone] = React.useState("");
   const [email, newEmail] = React.useState("");
   const [address, newAddress] = React.useState("");
-  const [holderName, newHolderName] = React.useState("");
-  const [cardNum, newCardNum] = React.useState("");
-  const [cvv, newCvv] = React.useState("");
-  const [expire, newExpire] = React.useState("");
-  const [count, setCount] = React.useState(0);
-  const [color, setColor] = React.useState("blue");
-
-  let x = 0.0;
+  const [holderName, newHolderName] = React.useState("Jane Doe");
+  const [cardNum, newCardNum] = React.useState("0000 0000 0000 0000");
+  const [cvv, newCvv] = React.useState("333");
+  const [expire, newExpire] = React.useState("07/30");
+  const [count, setCount] = React.useState(0.2);
+  const [color, setColor] = React.useState("#41b6e6");
 
   return (
     <SafeAreaView>
@@ -42,7 +38,7 @@ function ProfilePage() {
             source={require("../assets/images/Logo.png")}
             style={{ width: 80, height: 80 }}
           />
-          <Text style={{ fontSize: 30, margin: 30 }}>Hi, {userName}!</Text>
+          <Text style={{ fontSize: 30, margin: 30 }}>Hi, {name}!</Text>
           <Text style={{ fontSize: 20, margin: 10 }}>Good Noodle Rewards</Text>
           <View style={{ flexDirection: "row" }}>
             <ProgressBar progress={count} color={color} width="80%" />
@@ -53,13 +49,6 @@ function ProfilePage() {
               style={{ marginTop: -15 }}
             />
           </View>
-          {/*<Button
-            color="#41b6e6"
-            onPress={() => {
-              setCount(count + 0.1), setColor("#41b6e6");
-            }}
-            title="Point"
-          />*/}
           <Button
             color="#41b6e6"
             onPress={() => {
@@ -72,18 +61,6 @@ function ProfilePage() {
             title="Reedem"
           />
         </View>
-        <List.Accordion
-          theme={{
-            colors: {
-              primary: "#41b6e6",
-            },
-          }}
-          title="Previous Orders"
-          left={(props) => <List.Icon {...props} icon="cart" />}
-        >
-          <List.Item title="First Order" />
-          <List.Item title="Second Order " />
-        </List.Accordion>
         <List.Accordion
           theme={{
             colors: {

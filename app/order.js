@@ -16,7 +16,7 @@ import {
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { Card } from "react-native-paper";
 import SwitchSelector from "react-native-switch-selector";
-
+import { address } from './account';
 
 const orderItemsAnimation = {
   duration: 300,
@@ -49,25 +49,24 @@ const Data = [
     price: 1.00,
   },
   {
-    id: 4,
+    id: 3,
     name: "Double Krabby Patty",
     price: 2.00,
   },
   {
-    id: 3,
+    id: 4,
     name: "Salty Sea Dog",
     price: 1.25,
   },
   {
-    id: 4,
+    id: 5,
     name: "Kelp Shake",
     price: 2.00,
   },
 ];
-
 function OrderPage() {
     const options = [
-      { label: "Delivery", value: "USA" },
+      { label: "Delivery", value: address },
       { label: "Pick Up", value: "831 Bottom Feeder Lane, Bikini Bottom, Pacific Ocean"},
     ];
     const [titleText, setTitleText] = useState();  
@@ -93,7 +92,6 @@ function OrderPage() {
               source={require("../assets/images/Logo.png")}
               style={{ width: 80, height: 80 }}
             />
-            <Text>ORDER</Text>
           </View>
           {/* Order Items*/}
           <FlatList
@@ -118,7 +116,7 @@ function OrderPage() {
                       name="close"
                       size={25}
                       style={{ marginRight: 40 }}
-                      onPress={() => removeItem(item.id)}
+                      onPress={() => {removeItem(item.id), setTotal(total-item.price); }}
                     />
                   )}
                 />
@@ -156,7 +154,10 @@ function OrderPage() {
               borderWidth: 1,
               borderColor: "#fff",
             }}
-            onPress={() => setModalVisible(true)}
+            onPress={() => {
+              setModalVisible(true); 
+              setTotal(0);
+            } }
           >
             <Text
               style={{
@@ -170,7 +171,6 @@ function OrderPage() {
               Place Order
             </Text>
           </TouchableOpacity>
-
           <View style={styles.centeredView}>
       <Modal
         animationType="slide"

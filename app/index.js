@@ -4,6 +4,7 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import MenuPage from "./menu";
 import ProfilePage from "./account";
 import OrderPage from "./order";
+//import App from "./demo";
 
 function NavigationBar() {
   const Tab = createBottomTabNavigator();
@@ -45,6 +46,16 @@ function NavigationBar() {
           ),
         }}
       />
+   {/*   <Tab.Screen
+        name="DEMO"
+        component={App}
+        options={{
+          tabBarLabel: "DEMO",
+          tabBarIcon: ({ color, size }) => (
+            <MaterialCommunityIcons name="fish" color={color} size={size} />
+          ),
+        }}
+      /> */}
     </Tab.Navigator>
   );
 }

@@ -14,8 +14,8 @@ import {
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { Searchbar } from "react-native-paper";
 
-let itemList = [];
-var modalItem = "";
+export let itemList = [];
+let modalItem = "";
 
 const Search = () => {
   const [searchQuery, setSearchQuery] = React.useState("");
@@ -63,72 +63,84 @@ const listTab = [
 
 const data = [
   {
+    id: 1,
     name: "Krabby Patty",
     price: 1.25,
     category: "Patties",
     image: require("../assets/images/KrabbyPatty.png"),
   },
   {
+    id: 2,
     name: "Double Krabby Patty",
     price: 2.0,
     category: "Patties",
     image: require("../assets/images/Deluxe_Krabby_Patty.png"),
   },
   {
+    id: 3,
     name: "Triple Krabby Patty",
     price: 3.0,
     category: "Patties",
     image: require("../assets/images/Logo.png"),
   },
   {
+    id: 4,
     name: "Coral Bits",
     price: 1.0,
     category: "Sides",
     image: require("../assets/images/Coral_Bits.png"),
   },
   {
+    id: 5,
     name: "Kelp Rings",
     price: 1.5,
     category: "Sides",
     image: require("../assets/images/KrabbyPatty.png"),
   },
   {
+    id: 6,
     name: "Krabby Meal",
     price: 3.5,
     category: "Meals",
     image: require("../assets/images/KrabbyPatty.png"),
   },
   {
+    id: 7,
     name: "Double Krabby Meal",
     price: 3.75,
     category: "Meals",
     image: require("../assets/images/KrabbyPatty.png"),
   },
   {
+    id: 8,
     name: "Triple Krabby Meal",
     price: 4.0,
     category: "Meals",
     image: require("../assets/images/KrabbyPatty.png"),
   },
   {
+    id: 9,
     name: "Salty Sea Dog",
     price: 1.25,
     category: "Meals",
     image: require("../assets/images/KrabbyPatty.png"),
   },
   {
+    id: 10,
     name: "Sailors Surprise",
     price: 3.0,
     category: "Meals",
     image: require("../assets/images/KrabbyPatty.png"),
   },
   {
+    id: 11,
     name: "Kelp Shake",
     price: 2.0,
     category: "Drinks",
     image: require("../assets/images/KrabbyPatty.png"),
   },
   {
+    id: 12,
     name: "Seafoam Soda",
     price: 1.0,
     category: "Drinks",
@@ -137,6 +149,7 @@ const data = [
 ];
 
 const MenuPage = () => {
+  const [count, setCount] = useState(0);
   const [category, setStatus] = useState("All");
   const [datalist, setDataList] = useState(data);
 
@@ -148,7 +161,6 @@ const MenuPage = () => {
     }
     setStatus(category);
   };
-
   const renderItem = ({ item, index }) => {
     return (
       <View key={index} style={styles.itemContainer}>
@@ -161,17 +173,19 @@ const MenuPage = () => {
         <View style={styles.itemBody}>
           <Text style={styles.itemName}>{item.name}</Text>
           <Text>${item.price}</Text>
-          
         </View>
         <MaterialCommunityIcons
           name="plus"
           size={25}
-          style={{ alignSelf:'center', marginRight:40}}
+          style={{ alignSelf: "center", marginRight: 40 }}
           onPress={() => {
             itemList.push(item.name);
-            modalItem= item.name;
+            modalItem = item.name;
             console.log(itemList);
-            setModalVisible(true)
+            setModalVisible(true);
+            {
+              setCount(count + item.price);
+            }
           }}
         />
         <Modal
@@ -184,17 +198,22 @@ const MenuPage = () => {
         >
           <View style={styles.centeredView}>
             <View style={styles.modalView}>
-            <MaterialCommunityIcons
-                    name="close"
-                    size={25}
-                    style={{verticalAlign:'top', alignSelf: 'flex-end', position: 'absolute', paddingRight:20, paddingTop:20, color: 'white'}}
-                    onPress={() => {
-                      setModalVisible(!modalVisible)
-                    }}
-                  />            
-              <Text style={styles.modalText}>
-                {modalItem} added to order
-              </Text>
+              <MaterialCommunityIcons
+                name="close"
+                size={25}
+                style={{
+                  verticalAlign: "top",
+                  alignSelf: "flex-end",
+                  position: "absolute",
+                  paddingRight: 20,
+                  paddingTop: 20,
+                  color: "white",
+                }}
+                onPress={() => {
+                  setModalVisible(!modalVisible);
+                }}
+              />
+              <Text style={styles.modalText}>{modalItem} added to order</Text>
             </View>
           </View>
         </Modal>
@@ -213,7 +232,6 @@ const MenuPage = () => {
             source={require("../assets/images/Logo.png")}
             style={{ width: 80, height: 80 }}
           />
-          {/*<Text style={{color:'red', fontSize:20}}>Galley Grub</Text>*/}
         </View>
         <Search />
         <View style={styles.listTab}>
@@ -243,6 +261,7 @@ const MenuPage = () => {
           keyExtractor={(e, i) => i.toString()}
           renderItem={renderItem}
         />
+        <Text>{count}</Text>  
       </ScrollView>
     </SafeAreaView>
   );
@@ -312,7 +331,7 @@ const styles = StyleSheet.create({
   centeredView: {
     flex: 1,
     justifyContent: "flex-end",
-    marginBottom: "20.2%"
+    marginBottom: "20.2%",
   },
   modalView: {
     backgroundColor: "#06a94d",
@@ -320,9 +339,9 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   modalText: {
-    textAlign: 'center',
+    textAlign: "center",
     fontSize: 16,
-    color: 'white'
+    color: "white",
   },
   button: {
     borderRadius: 20,
